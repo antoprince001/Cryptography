@@ -1,7 +1,7 @@
 import javax.crypto.*;
 import java.util.Base64;
 
-public class Main {
+public class Des {
     public static void main(String[] argv) {
         try {
             System.out.println("Message Encryption Using DES Algorithm\n-------");
