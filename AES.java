@@ -1,10 +1,12 @@
 import java.security.*;
 import javax.crypto.*;
 import javax.crypto.spec.IvParameterSpec;
+import java.util.Base64;
 
-public class AES {
+public class Main {
 
-    // Function to create a secret key
+    // Function to create a
+    // secret key
     public static SecretKey createAESKey()
             throws Exception {
         SecureRandom securerandom = new SecureRandom();
@@ -16,7 +18,8 @@ public class AES {
         return key;
     }
 
-    // Function to initialize a vector with an arbitrary value
+    // Function to initialize a vector
+    // with an arbitrary value
     public static byte[] createInitializationVector() {
 
         // Used with encryption
@@ -26,7 +29,10 @@ public class AES {
         return initializationVector;
     }
 
-    // This function takes plaintext ,the key with an initialization vector to convert plainText into CipherText.
+    // This function takes plaintext,
+    // the key with an initialization
+    // vector to convert plainText
+    // into CipherText.
     public static byte[] do_AESEncryption(
             String plainText,
             SecretKey secretKey,
@@ -46,7 +52,11 @@ public class AES {
                 plainText.getBytes());
     }
 
-    // This function performs the reverse operation of the do_AESEncryption function.It converts ciphertext to the plaintext using the key.
+    // This function performs the
+    // reverse operation of the
+    // do_AESEncryption function.
+    // It converts ciphertext to
+    // the plaintext using the key.
     public static String do_AESDecryption(
             byte[] cipherText,
             SecretKey secretKey,
@@ -68,11 +78,15 @@ public class AES {
 
     public static void main(String args[]) throws Exception{
 
-        String plainText = "HelloWorld";
+        String plainText = "goodmorning";
         SecretKey secretKey = createAESKey();
         byte[] initializationVector = createInitializationVector();
         byte[] cipherText = do_AESEncryption(plainText, secretKey, initializationVector);
-        System.out.println("Encrypted[Bytes] : "+cipherText);
+        
+        Base64.Encoder encoder = Base64.getEncoder();
+        String encryptedText = encoder.encodeToString(cipherText);
+        System.out.println("Encrypted : "+encryptedText);
+        
         System.out.println("Decrypted : "+do_AESDecryption(cipherText, secretKey, initializationVector));
     }
 }
