@@ -1,7 +1,6 @@
 class HillCipher {
 
     int[][] matrix;
-    float[][] inverse;
     int size;
     static final int N = 3;
   
